@@ -1,0 +1,212 @@
+// variables
+// global
+$wysiwyg-container-padding: 0;
+$wysiwyg-container-background-color: transparent;
+$wysiwyg-container-item-margin: 0 0 1.875rem 0;
+$wysiwyg-container-block-start: 1.5rem;
+
+// ul/ols
+$wysiwyg-ul-padding: 0 0 0 0;
+$wysiwyg-ul-nested-margin-top: 0.625rem;
+$wysiwyg-ul-nested-margin-bottom: 0.625rem;
+
+// definition lists
+$wysiwyg-dl-gap: 0.625rem;
+$wysiwyg-dl-dt-font-weight: 700;
+
+// floating image
+$wysiwyg-img-right-width: 45%;
+$wysiwyg-img-right-margin-left: 1.875rem;
+$wysiwyg-img-left-width: 45%;
+$wysiwyg-img-left-margin-right: 1.875rem;
+
+// horizontal rule
+$wysiwyg-hr-margin: 1.875rem 1.875rem;
+$wysiwyg-hr-border-color: #333;
+
+// blockquote
+$wysiwyg-blockquote-background-color: #fff;
+$wysiwyg-blockquote-padding: 0 1.875rem;
+$wysiwyg-blockquote-padding-sm: 0.9375rem;
+$wysiwyg-blockquote-gap: 0.625rem;
+$wysiwyg-blockquote-p-color: #333;
+$wysiwyg-blockquote-cite-color: #333;
+$wysiwyg-blockquote-border-left: 5px solid #333;
+
+// inset text
+$wysiwyg-inset-text-padding: 1.25;
+$wysiwyg-inset-text-border-left: 5px solid #333;
+
+// figure
+$wysiwyg-figure-background-color: #f2f2f2;
+$wysiwyg-figure-padding: 1.875rem;
+$wysiwyg-figure-padding-sm: 0.625rem;
+$wysiwyg-figure-gap: 0.9375rem;
+$wysiwyg-figure-figcaption-font-size: 1rem;
+
+.wysiwyg {
+  background-color: $wysiwyg-container-background-color;
+  padding: $wysiwyg-container-padding;
+
+  /* Reset all margins */
+  >* {
+    margin: 0;
+  }
+
+  /* Add spacing only between adjacent elements. */
+  >*+* {
+    margin-block-start: $wysiwyg-container-block-start;
+  }
+
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  a:not([class]) {
+    transition: opacity 0.5s;
+    font-weight: 600;
+    word-break: break-word;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      opacity: 0.8;
+    }
+
+    // @include focus-access;
+  }
+
+  ol,
+  ul {
+    margin-left: 1.25rem;
+    position: relative;
+
+    li {
+      padding: $wysiwyg-ul-padding;
+    }
+
+    ul,
+    ol {
+      margin-block: $wysiwyg-ul-nested-margin-top $wysiwyg-ul-nested-margin-bottom;
+    }
+  }
+
+  dl {
+    display: flex;
+    flex-direction: column;
+    gap: $wysiwyg-dl-gap;
+
+    dt {
+      font-weight: $wysiwyg-dl-dt-font-weight;
+    }
+
+    dt,
+    dd {
+      margin: 0;
+    }
+  }
+
+  img {
+    width: auto;
+
+    &.full {
+      width: 100%;
+    }
+
+    &.right,
+    &[style*="float: right;"] {
+      float: right;
+      width: $wysiwyg-img-right-width;
+      margin-left: $wysiwyg-img-right-margin-left;
+    }
+
+    &.left,
+    &[style*="float: left"] {
+      float: left;
+      width: $wysiwyg-img-left-width;
+      margin-right: $wysiwyg-img-left-margin-right;
+    }
+  }
+
+  hr {
+    margin-block: $wysiwyg-hr-margin;
+    border-color: $wysiwyg-hr-border-color;
+  }
+
+  blockquote {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: $wysiwyg-blockquote-gap;
+    padding: $wysiwyg-blockquote-padding;
+    background-color: $wysiwyg-blockquote-background-color;
+    border: 0;
+    border-left: $wysiwyg-blockquote-border-left;
+
+    @media screen and (max-width: 39.9375em) {
+      padding: $wysiwyg-blockquote-padding-sm;
+    }
+
+    * {
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    p {
+      color: $wysiwyg-blockquote-p-color;
+    }
+
+    cite {
+      color: $wysiwyg-blockquote-cite-color;
+    }
+  }
+
+
+  figure {
+    width: 100%;
+    background-color: $wysiwyg-figure-background-color;
+    padding: $wysiwyg-figure-padding;
+    display: flex;
+    flex-direction: column;
+    gap: $wysiwyg-figure-gap;
+
+    @media screen and (max-width: 39.9375em) {
+      padding: $wysiwyg-figure-padding-sm;
+    }
+
+    img {}
+
+    figcaption {
+      background-color: transparent;
+      font-size: $wysiwyg-figure-figcaption-font-size;
+    }
+  }
+
+  .inset-text {
+    padding: $wysiwyg-inset-text-padding;
+    border-left: $wysiwyg-inset-text-border-left;
+    clear: both;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .video-container {
+    position: relative;
+    aspect-ratio: 16/9;
+
+    iframe,
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+}

@@ -1,0 +1,123 @@
+// Toggle Side Nav CTA On Mobile
+
+$cta-nav-toggle-bg: #333;
+$cta-nav-toggle-fg: #fff;
+
+.cta-nav-side {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: .5rem 1rem;
+  font-size: 1.125rem;
+  width: 100%;
+  text-transform: uppercase;
+  transition: color .3s, background-color .3s;
+  position: relative;
+  background-color: $cta-nav-toggle-bg;
+  color: $cta-nav-toggle-fg;
+  text-align: left;
+  border-radius: 4px;
+
+  span {
+    color: $cta-nav-toggle-fg;
+    transition: rotate .3s;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $cta-nav-toggle-bg;
+    color: $cta-nav-toggle-fg;
+  }
+
+  &.is-active {
+    background-color: $cta-nav-toggle-bg;
+    color: $cta-nav-toggle-fg;
+
+    span {
+      rotate: 180deg;
+    }
+  }
+}
+
+
+// SIDE NAV
+$submenu-padding: 1rem 1rem;
+$submenu-font-size: 1rem;
+$submenu-font-color: #000;
+$submenu-font-weight: #000;
+$submenu-border-bottom: 1px solid #E6D8CE;
+$submenu-hover-bg: #000;
+$submenu-hover-fg: #fff;
+$submenu-active-bg: #000;
+$submenu-active-fg: #fff;
+$submenu-sub-padding: .8rem 1rem;
+$submenu-sub-bg: #fff;
+
+.nav-submenu {
+  margin-bottom: 0 !important;
+  margin-left: 0;
+  list-style: none;
+
+  a {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.625rem;
+    padding: $submenu-padding;
+    font-size: $submenu-font-size;
+    color: $submenu-font-color;
+    font-weight: $submenu-font-weight;
+    border-bottom: $submenu-border-bottom;
+    line-height: 1.3;
+    position: relative;
+    transition: background-color .3s, color .3s;
+    text-decoration: none;
+
+    span {
+      color: $submenu-font-color;
+      transition: color .3s;
+      line-height: 1.3;
+    }
+
+    &:hover {
+      background-color: $submenu-hover-bg;
+      color: $submenu-hover-fg;
+
+      span {
+        color: $submenu-hover-fg;
+      }
+    }
+
+    &.is-active {
+      background-color: $submenu-active-bg;
+      color: $submenu-active-fg;
+
+      span {
+        color: $submenu-active-fg;
+      }
+    }
+  }
+
+  ul {
+    margin-left: 0;
+    list-style: none;
+    background-color: $submenu-sub-bg;
+    padding: 0;
+
+    li {
+      padding: 0;
+
+      a {
+        padding: $submenu-sub-padding;
+      }
+    }
+  }
+
+  &.is-open {
+    display: block !important;
+    margin-bottom: 2rem !important;
+  }
+}

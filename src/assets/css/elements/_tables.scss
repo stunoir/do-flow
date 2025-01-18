@@ -1,0 +1,141 @@
+// common table container attributes
+$table-cont-border: 2px solid #333;
+$table-cont-background-color: #fff;
+
+// caption styling
+$table-caption-padding: 0.625rem;
+$table-caption-font-weight: bold;
+
+// thead and tfoot specific attributes
+$table-header-background-color: rgba(0, 0, 0, 0.06);
+$table-header-color: #333;
+$table-footer-background-color: #fff;
+$table-footer-color: #333;
+
+// thead th, thead td, tfoot th, tfoot td
+$table-data-padding: 0.625rem;
+$table-data-font-weight: bold;
+$table-data-border-right: 1px solid #333;
+$table-data-border-bottom: 1px solid #333;
+
+// even rows in tbody
+$table-even-row-background-color: rgba(0, 0, 0, 0.04);
+$table-even-row-border-bottom: 0;
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border-radius: 0;
+
+  thead,
+  tbody,
+  tfoot {
+    border: $table-cont-border;
+    background-color: $table-cont-background-color;
+  }
+
+  caption {
+    padding: $table-caption-padding;
+    font-weight: $table-caption-font-weight;
+  }
+
+  thead {
+    background-color: $table-header-background-color;
+    color: $table-header-color;
+  }
+
+  tfoot {
+    background-color: $table-footer-background-color;
+    color: $table-footer-color;
+  }
+
+  thead tr,
+  tfoot tr {
+    background-color: transparent;
+  }
+
+  thead th,
+  thead td,
+  tfoot th,
+  tfoot td {
+    padding: $table-data-padding;
+    font-weight: $table-data-font-weight;
+    text-align: left;
+    vertical-align: top;
+    border-right: $table-data-border-right;
+  }
+
+  tbody th,
+  tbody td {
+    padding: $table-data-padding;
+    vertical-align: top;
+    border-right: $table-data-border-right;
+    border-bottom: $table-data-border-bottom;
+  }
+
+  tbody tr:nth-child(even) {
+    border-bottom: $table-even-row-border-bottom;
+    background-color: $table-even-row-background-color;
+  }
+}
+
+
+@media print,
+screen and (max-width: 63.9375em) {
+
+  table {
+    &.stack {
+      thead {
+        display: none;
+      }
+
+      tfoot {
+        display: none;
+      }
+
+      tr,
+      th,
+      td {
+        display: block;
+      }
+
+      td {
+        border-top: 0;
+      }
+    }
+  }
+}
+
+.table-scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, .5) #f1f1f1;
+  margin-bottom: 0.9375rem;
+
+  &::-webkit-scrollbar {
+    appearance: none;
+  }
+
+  &::-webkit-scrollbar:vertical {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar:horizontal {
+    height: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #ffffff;
+  }
+
+  table {
+    margin-bottom: 0.9375rem;
+  }
+}

@@ -1,0 +1,28 @@
+// variables
+$notification-colours: (
+  default: #fff,
+  warning: #FFF6B5,
+  alert: #FEDADA,
+);
+
+$notification-bg: #B4FFD2;
+$notification-padding: 2rem 0;
+
+.notification-strip {
+  width: 100%;
+  background-color: map-get($notification-colours, default);
+  padding: $notification-padding;
+
+  // generate classes for all variants (except primary)
+  @each $variant, $color in $notification-colours {
+    @if $variant !=default {
+      &--#{$variant} {
+        background-color: $color;
+      }
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}

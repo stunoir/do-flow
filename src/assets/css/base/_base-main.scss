@@ -1,0 +1,77 @@
+* {
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 100%;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  padding: 0;
+  background: $base-body-bg;
+  font-family: $font-main;
+  font-weight: normal;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  interpolate-size: allow-keywords;
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/interpolate-size 
+  // used to allow animations
+}
+
+xmp {
+  background-color: #363636 !important;
+  padding: 0;
+  border-radius: 6px;
+  display: block;
+  color: #fff !important;
+}
+
+
+// enable view transitions
+@view-transition {
+  navigation: auto;
+}
+
+// `<main>` element as the element that should transition
+main {
+  view-transition-name: main-content;
+}
+
+// apply animations to the snapshots
+::view-transition-old(main-content) {
+  animation: .3s ease-out both page-out;
+}
+
+::view-transition-new(main-content) {
+  animation: .3s ease-out both page-in;
+}
+
+// animations
+@keyframes page-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

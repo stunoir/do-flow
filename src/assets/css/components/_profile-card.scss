@@ -1,0 +1,46 @@
+$profile-gap: 1.25rem;
+$profile-content-gap: 0.313rem;
+$profile-image-size: 56px;
+$profile-image-radius: 50%;
+
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: $profile-gap;
+  flex: 1;
+
+  .pc-img {
+    width: $profile-image-size;
+    height: $profile-image-size;
+
+    img {
+      object-fit: cover;
+      object-position: center;
+      height: 100%;
+      width: 100%;
+      border-radius: $profile-image-radius;
+    }
+  }
+
+  .pc-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: $profile-content-gap;
+
+    * {
+      margin-bottom: 0;
+    }
+
+    .pc-title {
+      font-weight: 600;
+
+      a {
+        font-size: inherit;
+        text-decoration: none;
+      }
+    }
+  }
+}

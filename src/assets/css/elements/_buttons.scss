@@ -1,0 +1,168 @@
+// colours configuration using nested maps 
+// primary is ALWAYS needed - add more variants as required
+$button-colours: (
+  primary: (default: (bg: #a13f0b,
+      fg: #FFF,
+      border: #a13f0b,
+    ),
+    hover: (bg: transparent,
+      fg: #333,
+      border: #333,
+    )),
+  secondary: (default: (bg: #32735F,
+      fg: #FFF,
+      border: #32735F,
+    ),
+    hover: (bg: #333,
+      fg: #fff,
+      border: #333,
+    )),
+  ghost: (default: (bg: transparent,
+      fg: #a13f0b,
+      border: #a13f0b,
+    ),
+    hover: (bg: #a13f0b,
+      fg: #fff,
+      border: #a13f0b,
+    ))
+);
+
+// other colours
+$button-white: #FFF;
+$button-black: #333;
+
+// padding
+$button-padding-default: .875rem 1.25rem;
+$button-padding-sm: .625rem 0.9375rem;
+$button-padding-xs: 0.625rem;
+
+// gap
+$button-gap-default: 0.625rem;
+
+// other
+$button-border-radius: 4px;
+$button-transition: color 0.3s, background-color 0.3s, border 0.3s;
+
+// Mixin for button base style
+@mixin btn-base($padding: $button-padding-default, $gap: $button-gap-default) {
+  display: inline-flex;
+  padding: $padding;
+  border-radius: $button-border-radius;
+  justify-content: center;
+  align-items: center;
+  gap: $gap;
+  transition: $button-transition;
+  text-decoration: none;
+  cursor: pointer;
+
+  // mobile adjustments
+  @media screen and (max-width: 39.9375em) {
+    padding: $button-padding-sm;
+  }
+
+  &--sm {
+    padding: $button-padding-sm;
+    line-height: 1;
+  }
+
+  &--xs {
+    padding: $button-padding-xs;
+    line-height: 1;
+  }
+}
+
+// Mixin for button modifiers
+@mixin btn-modifier($variant, $state: default) {
+  $bg-color: map-get(map-get($button-colours, $variant), $state, bg);
+  $text-color: map-get(map-get($button-colours, $variant), $state, fg);
+  $border-color: map-get(map-get($button-colours, $variant), $state, border);
+
+  background-color: $bg-color;
+  color: $text-color;
+  border: 2px solid $border-color;
+
+  span {
+    color: $text-color;
+  }
+}
+
+// Base button styles builder
+.btn-main {
+  @include btn-base();
+
+  @include btn-modifier(primary);
+
+  &:hover,
+  &:focus {
+    @include btn-modifier(primary, hover);
+  }
+
+  // generate classes for all variants (except primary)
+  @each $variant, $colors in $button-colours {
+    @if $variant !=primary {
+      &--#{$variant} {
+        @include btn-modifier($variant);
+
+        &:hover,
+        &:focus {
+          @include btn-modifier($variant, hover);
+        }
+      }
+    }
+  }
+
+  &--text {
+    @include btn-base(0); // no padding or gap for text button
+    background-color: transparent;
+    color: $button-black;
+    border: none;
+
+    span {
+      color: $button-black;
+    }
+
+    &:hover,
+    &:focus {
+      span {
+        color: rgba($button-black, .8);
+      }
+
+      color: rgba($button-black, .8);
+      border: none;
+      background-color: transparent;
+    }
+  }
+
+  &--expanded {
+    width: 100%;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// skip buttob
+.skip-to-content-link {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  background: #363636;
+  color: #fff;
+  line-height: 1;
+  padding: $button-padding-default;
+  border-radius: $button-border-radius;
+  text-decoration: none;
+
+  &:focus {
+    left: 0;
+    top: 0;
+    width: auto;
+    height: auto;
+    color: #fff;
+  }
+}

@@ -1,0 +1,114 @@
+// gap between text content and image content
+$split-container-gap: 3.75rem;
+$split-container-gap-sm: 1.875rem;
+
+// gap between text content elements
+$split-text-gap: 0.625rem;
+
+// images
+$split-image-height: 390px;
+$split-image-height-sm: 250px;
+
+// background colour for full block version
+$split-wrapper-bg: #f8f8f8;
+
+// min height for full block version (medium and above only)
+$split-wrapper-min-height: 0;
+
+// padding for wrapped full block version
+$split-wrapper-padding: 6rem 0;
+$split-wrapper-padding-sm: 1.25rem 0;
+
+
+.split-block {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column-reverse;
+  gap: $split-container-gap-sm;
+
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $split-text-gap;
+    flex: 1;
+  }
+
+  .image-content {
+    height: $split-image-height;
+    flex: 1;
+
+    img {
+      object-fit: cover;
+      object-position: center;
+      height: 100%;
+      width: 100%;
+      margin-bottom: 0;
+    }
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 0;
+  }
+}
+
+.wrapper-split-block {
+  padding: $split-wrapper-padding-sm;
+  background-color: $split-wrapper-bg;
+  position: relative;
+}
+
+
+@media screen and (width >=40em) {
+
+  .split-block {
+    flex-direction: row;
+    gap: $split-container-gap;
+
+    &--reversed {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .wrapper-split-block {
+    padding: $split-wrapper-padding;
+
+    .split-block {
+      min-height: $split-wrapper-min-height;
+
+      .text-content {
+        max-width: 45%;
+      }
+
+      .image-content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 49.5vw;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+
+      &--reversed {
+        .image-content {
+          left: 0;
+          right: auto;
+        }
+      }
+    }
+  }
+}

@@ -18,8 +18,8 @@
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/task-tracker.git
-   cd task-tracker
+   git clone https://github.com/your-username/DoFlow.git
+   cd DoFlow
    ```
 
 2. Install dependencies:

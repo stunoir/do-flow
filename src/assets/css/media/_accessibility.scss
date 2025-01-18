@@ -1,0 +1,39 @@
+﻿// Common styles for reducing animations
+@mixin reduce-animations {
+  * {
+    animation: none !important;
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    opacity: 1 !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  .aos-init,
+  .aos-animate {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+    transition-property: none !important;
+  }
+}
+
+// Apply the mixin for users who prefer reduced motion
+@media screen and (prefers-reduced-motion: reduce) {
+  @include reduce-animations;
+}
+
+// Apply the mixin when animations are turned off via class
+html.access-anims-off {
+  @include reduce-animations;
+}
+
+/* ==== Reduced Transparency ==== */
+/* --------------------------------- */
+// detect if user has enabled a setting on their device to reduce the transparent or translucent layer effects
+@media screen and (prefers-reduced-transparency) {}

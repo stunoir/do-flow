@@ -1,0 +1,53 @@
+﻿// ============================================================================
+// File: mixins.scss
+// Description: Holds SCSS mixins for reusable styles and patterns
+// ============================================================================
+
+
+@mixin link-fader {
+  transition: opacity 0.3s;
+  opacity: 1;
+
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+}
+
+/* USE: 
+.my-link {
+	@include link-fader;
+}
+*/
+
+@mixin link-hover-lift() {
+  transition: transform .3s, box-shadow .3s;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* USE: 
+.my-card {
+	@include hover-lift;
+}
+*/
+
+@mixin focus-access() {
+  &:focus {
+    color: #000;
+    background-color: $col-focus-outline;
+    box-shadow: 0 -2px $col-focus-outline, 0 4px #000 !important;
+    outline: transparent;
+    opacity: 1;
+  }
+}
+
+/* USE: 
+.focusable-element {
+	@include focus-access;
+}
+*/

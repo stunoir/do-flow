@@ -1,0 +1,203 @@
+// accordion
+$accordion-border-radius: 0.375rem;
+$accordion-border: 2px solid #333;
+$accordion-gap: 0.9375rem;
+$accordion-item-bg: #fff;
+
+// accordion button
+$accordion-btn-bg: #fff;
+$accordion-btn-fg: #363636;
+$accordion-btn-hover-bg: #f1f1f1;
+$accordion-btn-hover-fc: #363636;
+$accordion-btn-active-bg: #fff;
+$accordion-btn-active-fc: #363636;
+$accordion-btn-padding: 1.25rem;
+$accordion-btn-font-size: 1.125rem;
+$accordion-btn-font-weight: 700;
+
+// accordion panel
+$accordion-panel-bg: transparent;
+$accordion-panel-padding: 0.625rem 1.25rem 1.25rem 1.25rem;
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $accordion-gap;
+  margin-bottom: 1.5rem;
+
+  .accordion-item {
+    border: $accordion-border;
+    border-radius: $accordion-border-radius;
+    background-color: $accordion-item-bg;
+    width: 100%;
+
+    .accordion-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      font-size: $accordion-btn-font-size;
+      font-weight: $accordion-btn-font-weight;
+      padding: $accordion-btn-padding;
+      background-color: $accordion-btn-bg;
+      border-radius: $accordion-border-radius;
+      color: $accordion-btn-fg;
+      transition: background-color .3s, color .3s;
+
+      [class^="szicon-"],
+      [class*=" szicon-"] {
+        transition: rotate .3s;
+        font-weight: $accordion-btn-font-weight;
+        display: inline-block;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: $accordion-btn-hover-bg;
+        color: $accordion-btn-hover-fc;
+
+        [class^="szicon-"],
+        [class*=" szicon-"] {
+          color: $accordion-btn-hover-fc;
+        }
+      }
+
+      &.is-active {
+        background-color: $accordion-btn-active-bg;
+        color: $accordion-btn-active-fc;
+
+        [class^="szicon-"],
+        [class*=" szicon-"] {
+          color: $accordion-btn-active-fc;
+          rotate: 180deg;
+        }
+      }
+    }
+
+    .accordion-panel {
+      // max-height: 0;
+      // overflow: hidden;
+      // visibility: hidden;
+      // transition-duration: .4s;
+      // transition-property: max-height, visibility;
+      block-size: 0;
+      transition: block-size .3s;
+      transition-behavior: allow-discrete;
+      overflow: hidden;
+
+      .inner-panel {
+        padding: $accordion-panel-padding;
+        background-color: $accordion-panel-bg;
+        border-radius: $accordion-border-radius;
+
+        :last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .accordion-panel {
+    &.is-open {
+      block-size: auto;
+      // visibility: visible;
+      // max-height: initial;
+      // transition-duration: .4s;
+      // transition-property: max-height, visibility;
+    }
+  }
+}
+
+details {
+  border: $accordion-border;
+  border-radius: $accordion-border-radius;
+  background-color: $accordion-item-bg;
+  width: 100%;
+  overflow: hidden;
+
+  summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    font-size: $accordion-btn-font-size;
+    font-weight: $accordion-btn-font-weight;
+    padding: $accordion-btn-padding;
+    background-color: $accordion-btn-bg;
+    border-radius: $accordion-border-radius;
+    color: $accordion-btn-fg;
+    transition: background-color .3s, color .3s;
+
+    [class^="szicon-"],
+    [class*=" szicon-"] {
+      transition: rotate .3s;
+      font-weight: $accordion-btn-font-weight;
+      display: inline-block;
+      padding: 0;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $accordion-btn-hover-bg;
+      color: $accordion-btn-hover-fc;
+
+      [class^="szicon-"],
+      [class*=" szicon-"] {
+        color: $accordion-btn-hover-fc;
+      }
+    }
+
+    &.is-active {
+      background-color: $accordion-btn-active-bg;
+      color: $accordion-btn-active-fc;
+
+      [class^="szicon-"],
+      [class*=" szicon-"] {
+        color: $accordion-btn-active-fc;
+        rotate: 180deg;
+      }
+    }
+  }
+
+  // used to allow animation 
+  &::details-content {
+    block-size: 0;
+    transition: block-size .3s, content-visibility .3s;
+    transition-behavior: allow-discrete;
+  }
+
+  // used to allow animation 
+  &[open]::details-content {
+    block-size: auto;
+  }
+
+  .content {
+    padding: $accordion-panel-padding;
+    background-color: $accordion-panel-bg;
+
+    >* {
+      margin: 0;
+    }
+
+    >*+* {
+      margin-block-start: 1.4rem;
+    }
+  }
+
+  &[open] {
+
+    [class^="szicon-"],
+    [class*=" szicon-"] {
+      rotate: 180deg;
+    }
+  }
+
+}
+
+details+details {
+  margin-block-start: $accordion-gap;
+}

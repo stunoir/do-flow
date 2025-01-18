@@ -1,0 +1,291 @@
+.menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 1.875rem;
+
+  &.vertical {
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+
+  &.expanded li {
+    flex: 1 1 0;
+  }
+
+  &.simple {
+    align-items: center;
+  }
+
+  &.align-left {
+    justify-content: flex-start;
+  }
+
+  &.align-right li {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @each $px, $rem in $flex-container-gaps {
+    &.menu-gap-#{$px} {
+      gap: #{$rem};
+    }
+
+    &.menu-row-gap-#{$px} {
+      row-gap: #{$rem};
+    }
+  }
+}
+
+// .menu {
+//   padding: 0;
+//   margin: 0;
+//   list-style: none;
+//   position: relative;
+//   display: flex;
+//   flex-wrap: wrap;
+
+//   [data-whatinput=mouse] & li {
+//     outline: auto;
+//   }
+
+//   a,
+//   .button {
+//     line-height: 1;
+//     text-decoration: none;
+//     display: block;
+//     padding: 0.7rem 1rem;
+//   }
+
+//   input,
+//   select,
+//   a,
+//   button {
+//     margin-bottom: 0;
+
+//     input {
+//       display: inline-block;
+//     }
+//   }
+
+//   &.horizontal,
+//   & {
+//     flex-wrap: wrap;
+//     flex-direction: row;
+//   }
+
+//   &.vertical {
+//     flex-wrap: nowrap;
+//     flex-direction: column;
+
+//     &.icon-top li a img,
+//     &.icon-top li a i,
+//     &.icon-top li a svg,
+//     &.icon-bottom li a img,
+//     &.icon-bottom li a i,
+//     &.icon-bottom li a svg {
+//       text-align: left;
+//     }
+//   }
+
+//   &.expanded li {
+//     flex: 1 1 0px;
+
+//     &.icon-top li a img,
+//     &.icon-top li a i,
+//     &.icon-top li a svg,
+//     &.icon-bottom li a img,
+//     &.icon-bottom li a i,
+//     &.icon-bottom li a svg {
+//       text-align: left;
+//     }
+//   }
+
+//   &.simple {
+//     align-items: center;
+
+//     li+li {
+//       margin-left: 1rem;
+//     }
+
+//     a {
+//       padding: 0;
+//     }
+//   }
+
+//   @media print,
+//   screen and (min-width: 40em) {
+//     &.medium-horizontal {
+//       flex-wrap: wrap;
+//       flex-direction: row;
+//     }
+
+//     &.medium-vertical {
+//       flex-wrap: nowrap;
+//       flex-direction: column;
+//     }
+
+//     &.medium-expanded li {
+//       flex: 1 1 0px;
+//     }
+
+//     &.medium-simple li {
+//       flex: 1 1 0px;
+//     }
+//   }
+
+//   @media print,
+//   screen and (min-width: 64em) {
+//     &.large-horizontal {
+//       flex-wrap: wrap;
+//       flex-direction: row;
+//     }
+
+//     &.large-vertical {
+//       flex-wrap: nowrap;
+//       flex-direction: column;
+//     }
+
+//     &.large-expanded li {
+//       flex: 1 1 0px;
+//     }
+
+//     &.large-simple li {
+//       flex: 1 1 0px;
+//     }
+//   }
+
+//   &.nested {
+//     margin-right: 0;
+//     margin-left: 1rem;
+//   }
+
+//   &.icons a {
+//     display: flex;
+//   }
+
+//   &.icon-top a,
+//   &.icon-right a,
+//   &.icon-bottom a,
+//   &.icon-left a {
+//     display: flex;
+
+//     .icon-left li a,
+//     .nested.icon-left li a {
+//       flex-flow: row nowrap;
+
+//       img,
+//       i,
+//       svg {
+//         margin-right: 0.25rem;
+//       }
+//     }
+
+//     .icon-right li a,
+//     .nested.icon-right li a {
+//       flex-flow: row nowrap;
+
+//       img,
+//       i,
+//       svg {
+//         margin-left: 0.25rem;
+//       }
+//     }
+
+//     .icon-top li a,
+//     .nested.icon-top li a {
+//       flex-flow: column nowrap;
+
+//       img,
+//       i,
+//       svg {
+//         align-self: stretch;
+//         margin-bottom: 0.25rem;
+//         text-align: center;
+//       }
+//     }
+
+//     .icon-bottom li a,
+//     .nested.icon-bottom li a {
+//       flex-flow: column nowrap;
+
+//       img,
+//       i,
+//       svg {
+//         align-self: stretch;
+//         margin-bottom: 0.25rem;
+//         text-align: center;
+//       }
+//     }
+//   }
+
+//   & .is-active>a,
+//   & .active>a {
+//     background: #1779ba;
+//     color: #fefefe;
+//   }
+
+//   &.align-left {
+//     justify-content: flex-start;
+//   }
+
+//   &.align-right li {
+//     display: flex;
+//     justify-content: flex-end;
+
+//     .submenu li {
+//       justify-content: flex-start;
+//     }
+//   }
+
+//   &.align-right.vertical li {
+//     display: block;
+//     text-align: right;
+
+//     .submenu li {
+//       text-align: right;
+//     }
+//   }
+
+//   &.align-right.icon-top a,
+//   &.align-right.icon-bottom a {
+//     text-align: right;
+//   }
+
+//   &.align-right .nested {
+//     margin-right: 1rem;
+//     margin-left: 0;
+//   }
+
+//   &.align-center li {
+//     display: flex;
+//     justify-content: center;
+
+//     .submenu li {
+//       justify-content: flex-start;
+//     }
+//   }
+
+//   & .menu-text {
+//     padding: 0.7rem 1rem;
+//     font-weight: bold;
+//     line-height: 1;
+//     color: inherit;
+//   }
+
+//   &.menu-centered>& {
+//     justify-content: center;
+
+//     li {
+//       display: flex;
+//       justify-content: center;
+
+//       .submenu li {
+//         justify-content: flex-start;
+//       }
+//     }
+//   }
+// }
