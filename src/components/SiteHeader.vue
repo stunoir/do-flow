@@ -5,7 +5,7 @@
     <div class="grid-container">
       <div class="grid-x grid-padding-x align-center">
         <div class="cell medium-6">
-          <h1>tasktrakr</h1>
+          <h1>DoFlow</h1>
           <p>your daily to-do list</p>
         </div>
       </div>
