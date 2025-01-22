@@ -1,8 +1,10 @@
 <script setup>
   import { reactive, ref, onMounted, watch } from 'vue'
+  import { useToast } from 'vue-toastification'
 
   const newTask = ref('')
   const tasks = reactive([])
+  const toast = useToast()
 
   // load tasks from localStorage when the component is mounted
   onMounted(() => {
@@ -25,11 +27,13 @@
     if (newTask.value.trim() !== '') {
       tasks.push(newTask.value)
       newTask.value = ''
+      toast.info('New task added!', { timeout: 3000 })
     }
   }
 
   const deleteTask = (idx) => {
     tasks.splice(idx, 1)
+    toast.info(`Task #${idx + 1} removed.`, { timeout: 2500 })
   }
 </script>
 
@@ -38,12 +42,12 @@
     <div class="wrapper-section">
       <div class="grid-container">
         <div class="grid-x grid-padding-x align-center">
-          <div class="cell medium-6">
+          <div class="cell large-6 medium-8 small-11">
             <!-- input form -->
-            <form @submit.prevent="addNewTask" class="block-container m-b-2">
+            <form @submit.prevent="addNewTask" class="block-container block-form m-b-2">
               <label for="txtTask">task name</label>
               <div class="flex-input m-t-1">
-                <input v-model="newTask" id="txtTask" type="text" placeholder="Enter a task..." />
+                <input autocomplete="off" v-model="newTask" id="txtTask" type="text" placeholder="Enter a task..." />
                 <button @click="addTask" class="btn-action">add</button>
               </div>
             </form>
@@ -52,12 +56,14 @@
             <div class="block-container">
               <h2>my tasks</h2>
               <ul class="tasks-list">
-                <li v-for="(task, index) in tasks" :key="task">
-                  <div class="flex-container flex-gap-20 flex-between">
-                    <p>{{ task }}</p>
-                    <button @click="deleteTask(index)" class="btn-main btn-main--ghost btn-main--xs">done</button>
-                  </div>
-                </li>
+                <transition-group name="fade">
+                  <li v-for="(task, index) in tasks" :key="task">
+                    <div class="flex-container flex-gap-20 flex-between">
+                      <p>{{ task }}</p>
+                      <button @click="deleteTask(index)" class="btn-main btn-main--ghost btn-main--xs">done</button>
+                    </div>
+                  </li>
+                </transition-group>
                 <li v-if="tasks.length === 0">
                   <p>no tasks added yet...</p>
                 </li>
@@ -71,6 +77,16 @@
 </template>
 
 <style scoped>
+  /* Fade transition animation */
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+
   .tasks-list {
     list-style: none;
     margin: 0;
@@ -103,7 +119,13 @@
       font-size: 1.25rem;
       line-height: 110%;
       color: #1e2c53;
-      font-weight: 400;
+      font-weight: 600;
     }
+  }
+
+  .block-form {
+    container-type: scroll-state;
+    position: sticky;
+    top: 0;
   }
 </style>

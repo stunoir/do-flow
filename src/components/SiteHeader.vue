@@ -4,7 +4,7 @@
   <header class="wrapper-header">
     <div class="grid-container">
       <div class="grid-x grid-padding-x align-center">
-        <div class="cell medium-6">
+        <div class="cell large-6 medium-8 small-11">
           <h1>whatcha doing?</h1>
           <p>a daily to-do list</p>
         </div>
