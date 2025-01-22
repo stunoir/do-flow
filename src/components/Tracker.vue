@@ -34,39 +34,40 @@
 </script>
 
 <template>
-  <div class="wrapper-section">
-    <div class="grid-container">
-      <div class="grid-x grid-padding-x align-center">
-        <div class="cell medium-6">
-          <!-- input form -->
-          <form @submit.prevent="addNewTask" class="block-container m-b-2">
-            <label>task name</label>
-            <div class="flex-input m-t-1">
-              <label for="txtTask" class="show-for-sr">Search</label>
-              <input v-model="newTask" id="txtTask" type="text" placeholder="Enter a task..." />
-              <button @click="addTask" class="btn-action">add</button>
-            </div>
-          </form>
+  <main>
+    <div class="wrapper-section">
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center">
+          <div class="cell medium-6">
+            <!-- input form -->
+            <form @submit.prevent="addNewTask" class="block-container m-b-2">
+              <label for="txtTask">task name</label>
+              <div class="flex-input m-t-1">
+                <input v-model="newTask" id="txtTask" type="text" placeholder="Enter a task..." />
+                <button @click="addTask" class="btn-action">add</button>
+              </div>
+            </form>
 
-          <!-- list of tasks -->
-          <div class="block-container">
-            <h2>all tasks</h2>
-            <ul class="tasks-list">
-              <li v-for="(task, index) in tasks" :key="task">
-                <div class="flex-container flex-gap-20 flex-between">
-                  <p>{{ task }}</p>
-                  <button @click="deleteTask(index)" class="btn-main btn-main--ghost btn-main--xs">remove</button>
-                </div>
-              </li>
-              <li v-if="tasks.length === 0">
-                <p>no tasks added yet...</p>
-              </li>
-            </ul>
+            <!-- list of tasks -->
+            <div class="block-container">
+              <h2>my tasks</h2>
+              <ul class="tasks-list">
+                <li v-for="(task, index) in tasks" :key="task">
+                  <div class="flex-container flex-gap-20 flex-between">
+                    <p>{{ task }}</p>
+                    <button @click="deleteTask(index)" class="btn-main btn-main--ghost btn-main--xs">done</button>
+                  </div>
+                </li>
+                <li v-if="tasks.length === 0">
+                  <p>no tasks added yet...</p>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <style scoped>
@@ -75,31 +76,34 @@
     margin: 0;
 
     li {
-      padding-bottom: 1rem;
+      background-color: #f9faff;
+      padding: 1rem 1.5rem;
+      border-radius: 20px;
+
       &:not(:last-of-type) {
         margin-block-end: 1rem;
-        border-bottom: 1px solid #ffc76d;
       }
     }
 
     p {
       margin-bottom: 0;
       font-weight: 500;
+      color: #1e2c53;
     }
   }
 
   .block-container {
     background-color: #fff;
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 6px;
     box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
 
     h2,
     label {
-      font-size: 2rem;
+      font-size: 1.25rem;
       line-height: 110%;
-      color: #a13f0b;
-      font-weight: 200;
+      color: #1e2c53;
+      font-weight: 400;
     }
   }
 </style>
