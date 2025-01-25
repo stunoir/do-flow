@@ -1,10 +1,10 @@
 <script setup></script>
 
 <template>
-  <header class="wrapper-header">
+  <header class="wrapper-header animated fadeIn">
     <div class="grid-container">
       <div class="grid-x grid-padding-x align-center">
-        <div class="cell large-6 medium-8 small-11">
+        <div class="cell large-8 small-11">
           <h1>whatcha doing?</h1>
           <p>a daily to-do list</p>
         </div>
