@@ -26,7 +26,7 @@
     { deep: true }
   )
 
-  // computed: Group tasks by category (sorted Z-A)
+  // computed: group tasks by category (sorted Z-A)
   const groupedTasks = computed(() => {
     const grouped = tasks.value.reduce((acc, task) => {
       if (!acc[task.category]) {
@@ -44,7 +44,7 @@
       }, {})
   })
 
-  // computed: Count of categories
+  // computed: count of categories
   const groupCount = computed(() => Object.keys(groupedTasks.value).length)
 
   // add a new task
@@ -52,7 +52,7 @@
     if (!newTask.value.trim()) return
 
     tasks.value.push({
-      id: Date.now(), // Ensure unique ID
+      id: Date.now(), // unique ID
       title: newTask.value.trim(),
       category: newTaskCate.value
     })
